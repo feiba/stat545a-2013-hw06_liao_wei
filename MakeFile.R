@@ -2,12 +2,7 @@
 d <- getwd()
 if (!is.null(d)) setwd(d)
 
-## remove all the old version file we generated last time 
-outputs <- c(list.files(pattern = "*.tsv$"),  
-             list.files(pattern = "*.png$")) 
-file.remove(outputs)
-
-## remove result folder which holds results
+## remove result folder which holds results to make sure we don't have any result from previous experiment
 unlink("results_figure", recursive = TRUE)
 unlink("results_data", recursive = TRUE)
 
@@ -21,4 +16,4 @@ dir.create(file.path("results_data"), showWarnings = FALSE)
 ## run my scripts
 #source("00_package_installer.R")  # only need to run once for installation 
 source("01_data_preparation.R",echo = TRUE)  # data import and preprocessing
-#source("02_aggregatePlot.R",echo = TRUE)
+source("02_data_process.R",echo = TRUE)   # new data import and processing
